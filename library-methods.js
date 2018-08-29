@@ -21,24 +21,33 @@ var library = {
                       tracks: ["t03"]
                     }
              }
+  printPlaylists: function() {
+    var tmpStr = "";
+    for (var playlistId in this.playlists) {
+      var curPlay = this.playlists[playlistId];
+      tmpStr +=  curPlay.id + ": " + curPlay.name + " - " + curPlay.tracks.length + " track" + ((curPlay.tracks.length > 1) ? "s" : "") + "\n";
+    }
+    return tmpStr;
+  }
 }
 
+console.log(printPlaylists);
 // FUNCTIONS TO IMPLEMENT:
 
 // prints a list of all playlists, in the form:
 // p01: Coding Music - 2 tracks
 // p02: Other Playlist - 1 tracks
 
-var printPlaylists = function() {
+// var printPlaylists = function() {
 
-  var tmpStr = "";
+//   var tmpStr = "";
 
-  for (var playListId in library.playlists) {
-    var curPlay = library.playlists[playListId];
-    tmpStr +=  curPlay.id + ": " + curPlay.name + " - " + curPlay.tracks.length + " track" + ((curPlay.tracks.length > 1) ? "s" : "") + "\n";
-  }
-  return tmpStr;
-}
+//   for (var playListId in library.playlists) {
+//     var curPlay = library.playlists[playListId];
+//     tmpStr +=  curPlay.id + ": " + curPlay.name + " - " + curPlay.tracks.length + " track" + ((curPlay.tracks.length > 1) ? "s" : "") + "\n";
+//   }
+//   return tmpStr;
+// }
 
 //console.log(printPlaylists());
 
