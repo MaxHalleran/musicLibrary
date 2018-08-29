@@ -29,9 +29,19 @@ var library = {
 // p01: Coding Music - 2 tracks
 // p02: Other Playlist - 1 tracks
 
-var printPlaylists = function () {
+var printPlaylists = function() {
 
+  var tmpStr = "";
+
+  for (var playListId in library.playlists) {
+    tmpStr = (
+      playListId.id + ": " + playListId.name + " - " + playListId.tracks.length + " track" + ((playListId.tracks.length > 1) ? "s" : "") + "\n"
+      );
+  }
+  return tmpStr;
 }
+
+console.log( printPlaylists());
 
 
 // prints a list of all tracks, in the form:
@@ -86,7 +96,7 @@ var addPlaylist = function (name) {
 // STRETCH:
 // given a query string string, prints a list of tracks
 // where the name, artist or album contains the query string (case insensitive)
-// tip: use "string".search("tri") 
+// tip: use "string".search("tri")
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/search
 
 var printSearchResults = function(query) {
