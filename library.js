@@ -69,9 +69,11 @@ console.log(printTracks());
 var printPlaylist = function (playlistId)
 { var tmpStr = "";
   var curPlay = library.playlists[playlistId];
-    tmpStr +=  curPlay.id + ": " + curPlay.name + " - " + curPlay.tracks.length + " track" + ((curPlay.tracks.length > 1) ? "s" : "") + "\n";
+  tmpStr =  curPlay.id + ": " + curPlay.name + " - " + curPlay.tracks.length + " track" + ((curPlay.tracks.length > 1) ? "s" : "") + "\n";
+  return tmpStr;
 }
-console.log(printPlaylist());
+console.log(printPlaylist("p01"));
+console.log(printPlaylist("p02"));
 
 // adds an existing track to an existing playlist
 
