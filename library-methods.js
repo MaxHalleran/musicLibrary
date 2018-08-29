@@ -20,18 +20,20 @@ var library = {
                       name: "Other Playlist",
                       tracks: ["t03"]
                     }
-             }
-  printPlaylists: function() {
-    var tmpStr = "";
-    for (var playlistId in this.playlists) {
-      var curPlay = this.playlists[playlistId];
-      tmpStr +=  curPlay.id + ": " + curPlay.name + " - " + curPlay.tracks.length + " track" + ((curPlay.tracks.length > 1) ? "s" : "") + "\n";
-    }
+             },
+  methods: {
+    printPlaylists: function() {
+      var tmpStr = "";
+      for (var playlistId in this.playlists) {
+        var curPlay = this.playlists[playlistId];
+        tmpStr +=  curPlay.id + ": " + curPlay.name + " - " + curPlay.tracks.length + " track" + ((curPlay.tracks.length > 1) ? "s" : "") + "\n";
+      }
     return tmpStr;
+    }
   }
-}
+};
 
-console.log(printPlaylists);
+console.log(library.methods.printPlaylists());
 // FUNCTIONS TO IMPLEMENT:
 
 // prints a list of all playlists, in the form:
@@ -67,7 +69,7 @@ var printTracks = function ()
     tmpStr += curTrack.id + ": " + curTrack.name + " by " + curTrack.artist + " (" + curTrack.album + ")" + "\n";
   }
   return tmpStr;
-}
+};
 // console.log(printTracks());
 
 // prints a list of tracks for a given playlist, in the form:
@@ -89,7 +91,7 @@ var printPlaylist = function (playlistId){
 
   return tmpStr;
 
-}
+};
 
 // console.log(printPlaylist("p01"));
 // console.log(printPlaylist("p02"));
@@ -98,7 +100,7 @@ var printPlaylist = function (playlistId){
 
 var addTrackToPlaylist = function (trackId, playlistId) {
   library.playlists[playlistId].tracks.push(trackId);
-}
+};
 addTrackToPlaylist("t01", "p02");
 console.log(printPlaylist("p02"));
 
@@ -108,7 +110,7 @@ console.log(printPlaylist("p02"));
 
 var uid = function() {
   return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-}
+};
 
 
 // adds a track to the library
@@ -125,7 +127,7 @@ var addTrack = function (name, artist, album)
   library.tracks[tmpObj.id] = tmpObj;
   //console.log(library.tracks[tmpObj.id]);
 
-}
+};
 
 addTrack("name","artist","album");
 //console.log(printTracks());
@@ -140,10 +142,9 @@ var addPlaylist = function (name) {
   };
 
   library.playlists[tempObj.id] = tempObj;
-}
+};
 
 addPlaylist("new playlist");
-console.log(printPlaylists());
 
 
 // STRETCH:
@@ -154,4 +155,4 @@ console.log(printPlaylists());
 
 var printSearchResults = function(query) {
 
-}
+};
