@@ -88,8 +88,7 @@ var printPlaylist = function (playlistId){
 // adds an existing track to an existing playlist
 
 var addTrackToPlaylist = function (trackId, playlistId) {
-  var tempPlace = library.playlists[playlistId].tracks.push(trackId);
-  console.log(tempPlace);
+  library.playlists[playlistId].tracks.push(trackId);
 }
 addTrackToPlaylist("t01", "p02");
 console.log(printPlaylist("p02"));
@@ -125,8 +124,17 @@ addTrack("name","artist","album");
 // adds a playlist to the library
 
 var addPlaylist = function (name) {
+  var tempObj = {
+    id: uid(),
+    name: String(name),
+    tracks: []
+  };
 
+  library.playlists[tempObj.id] = tempObj;
 }
+
+addPlaylist("new playlist");
+console.log(printPlaylists());
 
 
 // STRETCH:
