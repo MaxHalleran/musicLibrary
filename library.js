@@ -102,13 +102,27 @@ var uid = function() {
 
 // adds a track to the library
 
-var addTrack = function (name, artist, album) {
+var addTrack = function (name, artist, album)
+{
+  var tmpObj = {
 
+  id : uid(),
+  name : String(name),
+  artist : String(artist),
+  album : String(album)
+};
+
+  
+
+  library.tracks[tmpObj.id] = [tmpObj];
+  console.log(library.tracks[tmpObj.id]);
 }
 
 
-// adds a playlist to the library
 
+addTrack("name","artist","album");
+// adds a playlist to the library
+console.log(printTracks());
 var addPlaylist = function (name) {
 
 }
