@@ -40,7 +40,7 @@ var printPlaylists = function() {
   return tmpStr;
 }
 
-console.log(printPlaylists());
+//console.log(printPlaylists());
 
 
 // prints a list of all tracks, in the form:
@@ -59,7 +59,7 @@ var printTracks = function ()
   }
   return tmpStr;
 }
-console.log(printTracks());
+// console.log(printTracks());
 
 // prints a list of tracks for a given playlist, in the form:
 // p01: Coding Music - 2 tracks
@@ -82,13 +82,13 @@ var printPlaylist = function (playlistId){
 
 }
 
-console.log(printPlaylist("p01"));
-console.log(printPlaylist("p02"));
+// console.log(printPlaylist("p01"));
+// console.log(printPlaylist("p02"));
 
 // adds an existing track to an existing playlist
 
 var addTrackToPlaylist = function (trackId, playlistId) {
-
+  var tempPlace = library.playlists[playlistId].tracks;
 }
 
 
@@ -105,24 +105,22 @@ var uid = function() {
 var addTrack = function (name, artist, album)
 {
   var tmpObj = {
-
-  id : uid(),
-  name : String(name),
-  artist : String(artist),
-  album : String(album)
+    id : uid(),
+    name : String(name),
+    artist : String(artist),
+    album : String(album)
 };
 
-  
+  library.tracks[tmpObj.id] = tmpObj;
+  //console.log(library.tracks[tmpObj.id]);
 
-  library.tracks[tmpObj.id] = [tmpObj];
-  console.log(library.tracks[tmpObj.id]);
 }
 
-
-
 addTrack("name","artist","album");
+//console.log(printTracks());
+
 // adds a playlist to the library
-console.log(printTracks());
+
 var addPlaylist = function (name) {
 
 }
