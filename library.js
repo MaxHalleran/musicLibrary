@@ -48,11 +48,11 @@ console.log(printPlaylists());
 // t02: Model View Controller by James Dempsey (WWDC 2003)
 // t03: Four Thirty-Three by John Cage (Woodstock 1952)
 
-var printTracks = function () 
+var printTracks = function ()
 {
   var tmpStr = "";
 
-  for (var trackId in library.tracks) 
+  for (var trackId in library.tracks)
   {
     var curTrack = library.tracks[trackId];
     tmpStr += curTrack.id + ": " + curTrack.name + " by " + curTrack.artist + " (" + curTrack.album + ")" + "\n";
@@ -66,12 +66,24 @@ console.log(printTracks());
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
 // t02: Model View Controller by James Dempsey (WWDC 2003)
 
-var printPlaylist = function (playlistId)
-{ var tmpStr = "";
+var printPlaylist = function (playlistId){
+
+  var tmpStr = "";
+
   var curPlay = library.playlists[playlistId];
   tmpStr =  curPlay.id + ": " + curPlay.name + " - " + curPlay.tracks.length + " track" + ((curPlay.tracks.length > 1) ? "s" : "") + "\n";
+
+  for (var trackId in library.playlists[playlistId].tracks)
+  {
+    console.log(trackId);
+    // var curTrack = library.tracks[trackId];
+    // tmpStr += curTrack.id + ": " + curTrack.name + " by " + curTrack.artist + " (" + curTrack.album + ")" + "\n";
+  }
+
   return tmpStr;
+
 }
+
 console.log(printPlaylist("p01"));
 console.log(printPlaylist("p02"));
 
