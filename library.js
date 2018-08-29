@@ -34,14 +34,13 @@ var printPlaylists = function() {
   var tmpStr = "";
 
   for (var playListId in library.playlists) {
-    tmpStr = (
-      playListId.id + ": " + playListId.name + " - " + playListId.tracks.length + " track" + ((playListId.tracks.length > 1) ? "s" : "") + "\n"
-      );
+    var curPlay = library.playlists[playListId];
+    tmpStr =  curPlay.id + ": " + curPlay.name + " - " + curPlay.tracks.length + " track" + ((curPlay.tracks.length > 1) ? "s" : "") + "\n";
   }
   return tmpStr;
 }
 
-console.log( printPlaylists());
+console.log(printPlaylists());
 
 
 // prints a list of all tracks, in the form:
