@@ -21,138 +21,78 @@ var library = {
                       tracks: ["t03"]
                     }
              },
-  methods: {
-    printPlaylists: function() {
-      var tmpStr = "";
-      for (var playlistId in this.playlists) {
-        var curPlay = this.playlists[playlistId];
-        tmpStr +=  curPlay.id + ": " + curPlay.name + " - " + curPlay.tracks.length + " track" + ((curPlay.tracks.length > 1) ? "s" : "") + "\n";
-      }
-    return tmpStr;
+
+  printPlaylists: function printPlaylists() {
+    var tmpStr = "";
+    for (var playlistId in this.playlists) {
+       var curPlay = this.playlists[playlistId];
+      tmpStr +=  curPlay.id + ": " + curPlay.name + " - " + curPlay.tracks.length + " track" + ((curPlay.tracks.length > 1) ? "s" : "") + "\n";
+     }
+  return tmpStr;
+  },
+
+  printTracks: function printTracks() {
+   var tmpStr = "";
+
+    for (var trackId in this.tracks) {
+      var curTrack = this.tracks[trackId];
+      tmpStr += curTrack.id + ": " + curTrack.name + " by " + curTrack.artist + " (" + curTrack.album + ")" + "\n";
     }
+    return tmpStr;
+  },
+
+  printPlaylist: function printPlaylist(playlistId) {
+    var tmpStr = "";
+    var curPlay = this.playlists[playlistId];
+
+    tmpStr =  curPlay.id + ": " + curPlay.name + " - " + curPlay.tracks.length + " track" + ((curPlay.tracks.length > 1) ? "" : "s") + "\n";
+    this.playlists[playlistId].tracks.forEach(function (element) {
+      var curTrack = library.tracks[element];
+      tmpStr += curTrack.id + ": " + curTrack.name + " by " + curTrack.artist + " (" + curTrack.album + ")" + "\n";
+    });
+    return tmpStr;
+  },
+
+  addTrackToPlaylist: function addTrackToPlaylist(trackId, playlistId) {
+    this.playlists[playlistId].tracks.push(trackId);
+  },
+
+  uid: function uid() {
+    return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+  },
+
+  addTrack: function addTrack(name, artist, album) {
+    var tmpObj = {
+      id : this.uid(),
+      name : String(name),
+      artist : String(artist),
+      album : String(album)
+    }
+    library.tracks[tmpObj.id] = tmpObj;
+  },
+  addPlaylist: function addPlaylist(name) {
+    var tempObj = {
+      id: this.uid(),
+      name: String(name),
+      tracks: []
+    };
+    library.playlists[tempObj.id] = tempObj;
   }
-};
+}
 
-console.log(library.methods.printPlaylists());
-// FUNCTIONS TO IMPLEMENT:
+library.addPlaylist("New Playlist");
+library.addTrack("Yellow", "Coldplay", "I Dunno");
+library.addTrackToPlaylist("t03", "p01");
+console.log(library.printPlaylists());
+console.log(library.printTracks());
+console.log(library.printPlaylist("p02"));
 
-// prints a list of all playlists, in the form:
-// p01: Coding Music - 2 tracks
-// p02: Other Playlist - 1 tracks
+// // STRETCH:
+// // given a query string string, prints a list of tracks
+// // where the name, artist or album contains the query string (case insensitive)
+// // tip: use "string".search("tri")
+// // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/search
 
-// var printPlaylists = function() {
+// var printSearchResults = function(query) {
 
-//   var tmpStr = "";
-
-//   for (var playListId in library.playlists) {
-//     var curPlay = library.playlists[playListId];
-//     tmpStr +=  curPlay.id + ": " + curPlay.name + " - " + curPlay.tracks.length + " track" + ((curPlay.tracks.length > 1) ? "s" : "") + "\n";
-//   }
-//   return tmpStr;
-// }
-
-//console.log(printPlaylists());
-
-
-// prints a list of all tracks, in the form:
-// t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
-// t02: Model View Controller by James Dempsey (WWDC 2003)
-// t03: Four Thirty-Three by John Cage (Woodstock 1952)
-
-var printTracks = function ()
-{
-  var tmpStr = "";
-
-  for (var trackId in library.tracks)
-  {
-    var curTrack = library.tracks[trackId];
-    tmpStr += curTrack.id + ": " + curTrack.name + " by " + curTrack.artist + " (" + curTrack.album + ")" + "\n";
-  }
-  return tmpStr;
-};
-// console.log(printTracks());
-
-// prints a list of tracks for a given playlist, in the form:
-// p01: Coding Music - 2 tracks
-// t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
-// t02: Model View Controller by James Dempsey (WWDC 2003)
-
-var printPlaylist = function (playlistId){
-
-  var tmpStr = "";
-
-  var curPlay = library.playlists[playlistId];
-  tmpStr =  curPlay.id + ": " + curPlay.name + " - " + curPlay.tracks.length + " track" + ((curPlay.tracks.length > 1) ? "s" : "") + "\n";
-
-  library.playlists[playlistId].tracks.forEach(function (element) {
-    var curTrack = library.tracks[element];
-    tmpStr += curTrack.id + ": " + curTrack.name + " by " + curTrack.artist + " (" + curTrack.album + ")" + "\n";
-  });
-
-  return tmpStr;
-
-};
-
-// console.log(printPlaylist("p01"));
-// console.log(printPlaylist("p02"));
-
-// adds an existing track to an existing playlist
-
-var addTrackToPlaylist = function (trackId, playlistId) {
-  library.playlists[playlistId].tracks.push(trackId);
-};
-addTrackToPlaylist("t01", "p02");
-console.log(printPlaylist("p02"));
-
-
-// generates a unique id
-// (use this for addTrack and addPlaylist)
-
-var uid = function() {
-  return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-};
-
-
-// adds a track to the library
-
-var addTrack = function (name, artist, album)
-{
-  var tmpObj = {
-    id : uid(),
-    name : String(name),
-    artist : String(artist),
-    album : String(album)
-};
-
-  library.tracks[tmpObj.id] = tmpObj;
-  //console.log(library.tracks[tmpObj.id]);
-
-};
-
-addTrack("name","artist","album");
-//console.log(printTracks());
-
-// adds a playlist to the library
-
-var addPlaylist = function (name) {
-  var tempObj = {
-    id: uid(),
-    name: String(name),
-    tracks: []
-  };
-
-  library.playlists[tempObj.id] = tempObj;
-};
-
-addPlaylist("new playlist");
-
-
-// STRETCH:
-// given a query string string, prints a list of tracks
-// where the name, artist or album contains the query string (case insensitive)
-// tip: use "string".search("tri")
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/search
-
-var printSearchResults = function(query) {
-
-};
+// };
