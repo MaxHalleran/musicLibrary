@@ -35,7 +35,7 @@ var printPlaylists = function() {
 
   for (var playListId in library.playlists) {
     var curPlay = library.playlists[playListId];
-    tmpStr =  curPlay.id + ": " + curPlay.name + " - " + curPlay.tracks.length + " track" + ((curPlay.tracks.length > 1) ? "s" : "") + "\n";
+    tmpStr +=  curPlay.id + ": " + curPlay.name + " - " + curPlay.tracks.length + " track" + ((curPlay.tracks.length > 1) ? "s" : "") + "\n";
   }
   return tmpStr;
 }
@@ -48,10 +48,18 @@ console.log(printPlaylists());
 // t02: Model View Controller by James Dempsey (WWDC 2003)
 // t03: Four Thirty-Three by John Cage (Woodstock 1952)
 
-var printTracks = function () {
+var printTracks = function () 
+{
+  var tmpStr = "";
 
+  for (var trackId in library.tracks) 
+  {
+    var curTrack = library.tracks[trackId];
+    tmpStr += curTrack.id + ": " + curTrack.name + " by " + curTrack.artist + " (" + curTrack.album + ")" + "\n";
+  }
+  return tmpStr;
 }
-
+console.log(printTracks());
 
 // prints a list of tracks for a given playlist, in the form:
 // p01: Coding Music - 2 tracks
