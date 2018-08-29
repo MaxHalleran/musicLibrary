@@ -73,12 +73,10 @@ var printPlaylist = function (playlistId){
   var curPlay = library.playlists[playlistId];
   tmpStr =  curPlay.id + ": " + curPlay.name + " - " + curPlay.tracks.length + " track" + ((curPlay.tracks.length > 1) ? "s" : "") + "\n";
 
-  for (var trackId in library.playlists[playlistId].tracks)
-  {
-    console.log(trackId);
-    // var curTrack = library.tracks[trackId];
-    // tmpStr += curTrack.id + ": " + curTrack.name + " by " + curTrack.artist + " (" + curTrack.album + ")" + "\n";
-  }
+  library.playlists[playlistId].tracks.forEach(function (element) {
+    var curTrack = library.tracks[element];
+    tmpStr += curTrack.id + ": " + curTrack.name + " by " + curTrack.artist + " (" + curTrack.album + ")" + "\n";
+  });
 
   return tmpStr;
 
