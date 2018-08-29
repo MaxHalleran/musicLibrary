@@ -88,8 +88,11 @@ var printPlaylist = function (playlistId){
 // adds an existing track to an existing playlist
 
 var addTrackToPlaylist = function (trackId, playlistId) {
-  var tempPlace = library.playlists[playlistId].tracks;
+  var tempPlace = library.playlists[playlistId].tracks.push(trackId);
+  console.log(tempPlace);
 }
+addTrackToPlaylist("t01", "p02");
+console.log(printPlaylist("p02"));
 
 
 // generates a unique id
