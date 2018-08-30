@@ -77,15 +77,34 @@ var library = {
       tracks: []
     };
     library.playlists[tempObj.id] = tempObj;
+  },
+  printSearchResults: function printSearchResults(query) {
+    var index = [];
+    var searchQuery = RegExp(query, "gi");
+    var result = "";
+    for (var curTrack in this.tracks) {
+      for (var curField in this.tracks[curTrack]) {
+        if (library.tracks[curTrack][curField].search(searchQuery) > -1) {
+          index.push(library.tracks[curTrack]);
+        }
+      }
+    }
+
+    index.forEach( function(element) {
+      result += element.id + ": " + element.name + " by " + element.artist + " (" + element.album + ")" + "\n";
+    })
+    return result;
   }
 }
+
 
 library.addPlaylist("New Playlist");
 library.addTrack("Yellow", "Coldplay", "I Dunno");
 library.addTrackToPlaylist("t03", "p01");
-console.log(library.printPlaylists());
-console.log(library.printTracks());
-console.log(library.printPlaylist("p02"));
+// console.log(library.printPlaylists());
+// console.log(library.printTracks());
+// console.log(library.printPlaylist("p02"));
+console.log(library.printSearchResults("John"));
 
 // // STRETCH:
 // // given a query string string, prints a list of tracks
